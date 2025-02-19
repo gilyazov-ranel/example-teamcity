@@ -6,12 +6,8 @@
 	<groupId>org.netology</groupId>
 	<artifactId>plaindoll</artifactId>
 	<packaging>jar</packaging>
-<<<<<<< HEAD
-	<version>0.0.3</version>
-=======
 	<version>0.0.2</version>
->>>>>>> 3d3ff1d522dafdc870dff981de7f06617e9abd12
-
+	
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
