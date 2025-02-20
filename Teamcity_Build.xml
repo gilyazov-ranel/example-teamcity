@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="cc8d301e-413c-45d3-ba77-473ce0e83210" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="ce682638-1471-47b2-a5dd-d7873260e67c" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
   <name>Build</name>
   <description />
   <settings>
@@ -14,8 +14,12 @@
           <param name="localRepoScope" value="agent" />
           <param name="maven.path" value="%teamcity.tool.maven.DEFAULT%" />
           <param name="pomLocation" value="pom.xml" />
-          <param name="runnerArgs" value="-Dmaven.test.failure.ignore=true" />
+          <param name="teamcity.coverage.emma.include.source" value="true" />
+          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
+          <param name="teamcity.coverage.idea.includePatterns" value="*" />
+          <param name="teamcity.coverage.jacoco.patterns" value="+:*" />
           <param name="teamcity.step.mode" value="default" />
+          <param name="teamcity.tool.jacoco" value="%teamcity.tool.jacoco.DEFAULT%" />
           <param name="userSettingsSelection" value="settings.xml" />
         </parameters>
       </runner>
@@ -39,11 +43,11 @@
       </runner>
     </build-runners>
     <vcs-settings>
-      <vcs-entry-ref root-id="Teamcity_HttpsGithubComGilyazovRanelExampleTeamcityGitRefsHeadsMaster1" />
+      <vcs-entry-ref root-id="Teamcity_HttpsGithubComGilyazovRanelExampleTeamcityGitRefsHeadsMaster3" />
     </vcs-settings>
     <requirements />
     <build-triggers>
-      <build-trigger id="TRIGGER_2" type="vcsTrigger">
+      <build-trigger id="TRIGGER_4" type="vcsTrigger">
         <parameters>
           <param name="branchFilter" value="+:*" />
           <param name="enableQueueOptimization" value="true" />
@@ -53,11 +57,15 @@
     </build-triggers>
     <build-extensions>
       <extension id="perfmon" type="perfmon">
-        <parameters>
-          <param name="teamcity.perfmon.feature.enabled" value="true" />
-        </parameters>
+        <parameters />
       </extension>
     </build-extensions>
+    <artifact-dependencies>
+      <dependency id="ARTIFACT_DEPENDENCY_2" sourceBuildTypeId="Teamcity_Build" cleanDestination="false">
+        <revisionRule name="lastSuccessful" revision="latest.lastSuccessful" />
+        <artifact sourcePath="target/*.jar&#xD;&#xA;&#xD;&#xA;" />
+      </dependency>
+    </artifact-dependencies>
     <cleanup />
   </settings>
 </build-type>
